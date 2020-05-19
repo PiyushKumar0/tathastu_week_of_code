@@ -1,6 +1,6 @@
 #https://www.linkedin.com/in/piyushkumar0
 
-name = input("Enter your name:")
+name = input("Enter your Name:")
 branch = input("\nEnter your Branch:")
 gender = input("\nEnter your Gender:")
 college = input("\nEnter your College:")
