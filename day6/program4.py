@@ -1,39 +1,23 @@
 #https://www.linkedin.com/in/piyushkumar0/
 
-import math 
-  
-def countdigits(N): 
-    count = 0; 
-    while (N): 
-        count = count + 1; 
-        N = int(math.floor(N / 10)); 
-    return count; 
-      
-def cyclic(N): 
-    num = N;
-    n = countdigits(N); 
-    
-    rem = num % 10; 
-    div = math.floor(num / 10); 
-    num = ((math.pow(10, n - 1)) * rem + div)
-    large = num
-    
-    while (1): 
+def PermutationStep(num):
+    if sorted(list(str(num)), reverse=True) == list(str(num)):
+        return "It is already the greatest number"
+    ls = list(str(num))
+    n = 0
+    inx = 0
+    for ind, i in enumerate(ls[::-1]):
+        if int(i) < n:
+            n = int(i)
+            inx = -(ind + 1)
+            break
+        n = int(i)
+    ls[inx], ls[inx + 1] = ls[inx + 1], ls[inx]
 
-        rem = num % 10; 
-        div = math.floor(num / 10); 
-        num = ((math.pow(10, n - 1)) * rem + div)
-        
-        if(num > N and num < large):
-            large = num
-          
-        if (num == N): 
-            break;  
-              
-    if(large == N):
-        print("There is no number larger than", N)
-    else:
-        print("The next larger number than",N,"is",large)
-        
-num = int(input("Enter a number: "))
-cyclic(num)
+    nl = ls[inx::-1][::-1]
+    ln = sorted(ls[inx+1:])
+    st = ''.join(nl) + ''.join(ln)
+    return "The next greater number is " + st
+
+num = input("Enter a number: ")
+print(PermutationStep(num))
